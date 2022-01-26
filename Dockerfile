@@ -1,4 +1,4 @@
-FROM fedora:36
+FROM fedora:27
 MAINTAINER Claudiu Chiticariu Constatin <chiticariu@gmail.com>, Sascha Müllner <sascha.muellner@gmail.com>
 
 RUN dnf install gnupg wget dnf-plugins-core -y  \
