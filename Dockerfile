@@ -1,5 +1,5 @@
-FROM fedora:27
-MAINTAINER Claudiu Chiticariu Constatin <chiticariu@gmail.com>
+FROM fedora:36
+MAINTAINER Claudiu Chiticariu Constatin <chiticariu@gmail.com>, Sascha Müllner <sascha.muellner@gmail.com>
 
 RUN dnf install gnupg wget dnf-plugins-core -y  \
 	&& rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF" \
@@ -11,13 +11,13 @@ RUN dnf install curl unzip java-1.8.0-openjdk-headless java-1.8.0-openjdk-devel 
     dnf clean all
     
 RUN mkdir -p /android/sdk && \
-    curl -k https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -o sdk-tools-linux-3859397.zip && \
-    unzip -q sdk-tools-linux-3859397.zip -d /android/sdk && \
-    rm sdk-tools-linux-3859397.zip
+    curl -k https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -o commandlinetools-linux-7583922_latest.zip  && \
+    unzip -q commandlinetools-linux-7583922_latest.zip -d /android/sdk && \
+    rm commandlinetools-linux-7583922_latest.zip 
 
 RUN cd /android/sdk && \
     yes | ./tools/bin/sdkmanager --licenses && \
-    ./tools/bin/sdkmanager 'build-tools;27.0.3' 'build-tools;28.0.3' platform-tools 'platforms;android-28' 'platforms;android-27' 'platforms;android-26' 'ndk-bundle'
+    ./tools/bin/sdkmanager 'build-tools;30.1.0' 'build-tools;29.3.0' platform-tools 'platforms;android-30' 'platforms;android-29' 'ndk-bundle'
 
 RUN lynx -listonly -dump https://jenkins.mono-project.com/view/Xamarin.Android/job/xamarin-android-linux/lastSuccessfulBuild/Azure/ | grep -o "https://.*/Azure/processDownloadRequest/xamarin-android/xamarin.android-oss_v.*-Release.tar.bz2" > link.txt && \
     curl -L $(cat link.txt) \
