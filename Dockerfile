@@ -9,12 +9,12 @@ RUN dnf install gnupg wget dnf-plugins-core -y  \
 
 RUN dnf install curl unzip java-1.8.0-openjdk-headless java-1.8.0-openjdk-devel -y && \
     dnf clean all
-    
-RUN mkdir -p /android/sdk && \
-    curl -k https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -o commandlinetools-linux-7583922_latest.zip  && \
-    unzip -q commandlinetools-linux-7583922_latest.zip -d /android/sdk && \
-    rm commandlinetools-linux-7583922_latest.zip 
 
+RUN mkdir -p /android/sdk && \
+    curl -k https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -o sdk-tools-linux-3859397.zip && \
+    unzip -q sdk-tools-linux-3859397.zip -d /android/sdk && \
+    rm sdk-tools-linux-3859397.zip
+    
 RUN cd /android/sdk && \
     yes | ./tools/bin/sdkmanager --licenses && \
     ./tools/bin/sdkmanager 'build-tools;30.1.0' 'build-tools;29.3.0' platform-tools 'platforms;android-30' 'platforms;android-29' 'ndk-bundle'
