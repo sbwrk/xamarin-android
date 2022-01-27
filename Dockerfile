@@ -9,11 +9,8 @@ RUN dnf install gnupg wget dnf-plugins-core -y  \
         && dnf install libzip bzip2 bzip2-libs mono-devel nuget msbuild referenceassemblies-pcl lynx -y \
         && dnf clean all
 
-RUN dnf install curl unzip java-1.8.0-openjdk-headless java-1.8.0-openjdk-devel -y && \
+RUN dnf install curl unzip jq java-1.8.0-openjdk-headless java-1.8.0-openjdk-devel -y && \
     dnf clean all
-    
-RUN apt-get update && apt-get install -y \
-    jq
 
 RUN mkdir -p /android/sdk && \
     curl -k https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -o sdk-tools-linux-3859397.zip && \
