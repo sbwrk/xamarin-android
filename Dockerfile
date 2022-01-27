@@ -16,7 +16,7 @@ RUN mkdir -p /android/sdk && \
     rm sdk-tools-linux-3859397.zip && \
     ls
     
-
+RUN cd /android/sdk && \
     ls && \
     yes | ./tools/bin/sdkmanager --licenses
 
