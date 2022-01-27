@@ -13,9 +13,11 @@ RUN dnf install curl unzip java-1.8.0-openjdk-headless java-1.8.0-openjdk-devel 
 RUN mkdir -p /android/sdk && \
     curl -k https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -o sdk-tools-linux-3859397.zip && \
     unzip -q sdk-tools-linux-3859397.zip -d /android/sdk && \
-    rm sdk-tools-linux-3859397.zip
+    rm sdk-tools-linux-3859397.zip && \
+    ls
     
 RUN cd ./android/sdk && \
+    ls && \
     yes | ./cmdline-tools/bin/sdkmanager --licenses && \
     ./cmdline-tools/bin/sdkmanager 'build-tools;30.1.0' 'build-tools;29.3.0' platform-tools 'platforms;android-30' 'platforms;android-29' 'ndk-bundle'
 
