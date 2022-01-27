@@ -26,10 +26,10 @@ RUN cd /android/sdk && \
     ./tools/bin/sdkmanager 'build-tools;30.0.2' 'build-tools;29.0.2' platform-tools 'platforms;android-30' 'platforms;android-29' 'ndk-bundle'
 
 
-RUN curl -k "https://dev.azure.com/xamarin/public/_apis/build/builds/$XAMARIN_OSS_BUILD_ID/artifacts?artifactName=Installers-unsigned%20-%20Linux&api-version=5.1" | curl -L $(jq -r '.resource.downloadUrl') -o installers-unsigned - Linux.zip && \
-    unzip -q installers-unsigned - Linux.zip -d /tmp/xamarin-linux && \
-    rm installers-unsigned - Linux.zip && \
-    cd "/tmp/xamarin-linux/Installers - Linux/" && \
+RUN curl -k "https://dev.azure.com/xamarin/public/_apis/build/builds/$XAMARIN_OSS_BUILD_ID/artifacts?artifactName=Installers-unsigned%20-%20Linux&api-version=5.1" | curl -L $(jq -r '.resource.downloadUrl') -o "installers-unsigned - Linux.zip" && \
+    unzip -q "installers-unsigned - Linux.zip" -d /tmp/xamarin-linux && \
+    rm "installers-unsigned - Linux.zip" && \
+    cd "/tmp/xamarin-linux/installers-unsigned - Linux/" && \
     tar xjf ./xamarin.android-oss-v*.tar.bz2 --strip 1 -C /xamarin && \
     cp -a /xamarin/bin/Release/lib/xamarin.android/. /usr/lib/xamarin.android/ && \
     rm -rf /usr/lib/mono/xbuild/Xamarin/Android && \
