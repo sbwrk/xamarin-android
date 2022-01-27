@@ -31,7 +31,7 @@ RUN curl -k "https://dev.azure.com/xamarin/public/_apis/build/builds/$XAMARIN_OS
     rm "installers-unsigned - Linux.zip" && \
     cd "/tmp/xamarin-linux/installers-unsigned - Linux/" && \
     mkdir /android/xamarin && \
-    tarFile=$(ls xamarin.android-oss-v*.tar.bz2)
+    tarFile=$(ls xamarin.android-oss-v*.tar.bz2) && \
     tar xjf ./$tarFile --strip 1 -C /android/xamarin && \
     cp -a /android/xamarin/bin/Release/lib/xamarin.android /usr/lib/xamarin.android/ && \
 ##    rm -rf /usr/lib/mono/xbuild/Xamarin/Android && \
