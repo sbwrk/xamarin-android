@@ -1,6 +1,8 @@
 FROM fedora:27
 MAINTAINER Claudiu Chiticariu Constatin <chiticariu@gmail.com>, Sascha Müllner <sascha.muellner@gmail.com>
 
+ENV XAMARIN_OSS_BUILD_ID=31879
+
 RUN dnf install gnupg wget dnf-plugins-core -y  \
 	&& rpm --import "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF" \
 	&& dnf config-manager --add-repo http://download.mono-project.com/repo/centos7/ \
@@ -51,3 +53,4 @@ ENV ANDROID_NDK_PATH=/android/sdk/ndk-bundle
 ENV ANDROID_HOME=/android/sdk/
 ENV PATH=/android/xamarin/bin/Debug/bin:$PATH
 ENV JAVA_HOME=/usr/lib/jvm/java/
+
