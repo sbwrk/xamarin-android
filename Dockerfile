@@ -32,7 +32,7 @@ RUN curl -k "https://dev.azure.com/xamarin/public/_apis/build/builds/$XAMARIN_OS
     cd "/tmp/xamarin-linux/installers-unsigned - Linux/" && \
     mkdir /android/xamarin && \
     tar xjf ./xamarin.android-oss-v*.tar.bz2 --strip 1 -C /android/xamarin && \
-    cp -a /xamarin/bin/Release/lib/xamarin.android/ /usr/lib/xamarin.android/ && \
+    cp -a /xamarin/bin/Release/lib/xamarin.android /usr/lib/xamarin.android/ && \
 ##    rm -rf /usr/lib/mono/xbuild/Xamarin/Android && \
 ##    rm -rf /usr/lib/mono/xbuild-frameworks/MonoAndroid && \
 #    ln -s /usr/lib/xamarin.android/xbuild/Xamarin/Android/ /usr/lib/mono/xbuild/Xamarin/Android && \
@@ -40,7 +40,7 @@ RUN curl -k "https://dev.azure.com/xamarin/public/_apis/build/builds/$XAMARIN_OS
 #    ln -s /usr/lib/x86_64-linux-gnu/libzip.so.5.0 /usr/lib/x86_64-linux-gnu/libzip.so.4 && \
     
      ln -s /android/xamarin/bin/Release/lib/xamarin.android/xbuild/Xamarin /usr/lib/mono/xbuild/Xamarin && \
-     ln -s /android/xamarin/bin/Release/lib/xamarin.android/xbuild-frameworks/MonoAndroid/ /usr/lib/mono/xbuild-frameworks/MonoAndroid && \
+     ln -s /android/xamarin/bin/Release/lib/xamarin.android/xbuild-frameworks/MonoAndroid /usr/lib/mono/xbuild-frameworks/MonoAndroid && \
      ln -s /usr/lib64/libzip.so.5 /usr/lib64/libzip.so.4 && \
     rm -rf /tmp/xamarin-linux
 
