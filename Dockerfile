@@ -15,7 +15,7 @@ RUN mkdir -p /android/sdk && \
     unzip -q sdk-tools-linux-3859397.zip -d /android/sdk && \
     rm sdk-tools-linux-3859397.zip
     
-RUN cd /android/sdk && \
+RUN cd ./android/sdk && \
     yes | ./cmdline-tools/bin/sdkmanager --licenses && \
     ./cmdline-tools/bin/sdkmanager 'build-tools;30.1.0' 'build-tools;29.3.0' platform-tools 'platforms;android-30' 'platforms;android-29' 'ndk-bundle'
 
