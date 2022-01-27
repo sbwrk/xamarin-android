@@ -18,8 +18,8 @@ RUN mkdir -p /android/sdk && \
     
 RUN cd ./android/sdk && \
     ls && \
-    yes | ./cmdline-tools/bin/sdkmanager --licenses && \
-    ./cmdline-tools/bin/sdkmanager 'build-tools;30.1.0' 'build-tools;29.3.0' platform-tools 'platforms;android-30' 'platforms;android-29' 'ndk-bundle'
+    yes | ./tools/bin/sdkmanager --licenses && \
+    ./tools/bin/sdkmanager 'build-tools;30.1.0' 'build-tools;29.3.0' platform-tools 'platforms;android-30' 'platforms;android-29' 'ndk-bundle'
 
 RUN lynx -listonly -dump https://jenkins.mono-project.com/view/Xamarin.Android/job/xamarin-android-linux/lastSuccessfulBuild/Azure/ | grep -o "https://.*/Azure/processDownloadRequest/xamarin-android/xamarin.android-oss_v.*-Release.tar.bz2" > link.txt && \
     curl -L $(cat link.txt) \
