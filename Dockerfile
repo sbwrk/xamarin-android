@@ -30,14 +30,18 @@ RUN curl -k "https://dev.azure.com/xamarin/public/_apis/build/builds/$XAMARIN_OS
     unzip -q "installers-unsigned - Linux.zip" -d /tmp/xamarin-linux && \
     rm "installers-unsigned - Linux.zip" && \
     cd "/tmp/xamarin-linux/installers-unsigned - Linux/" && \
-    mkdir /xamarin && \
-    tar xjf ./xamarin.android-oss-v*.tar.bz2 --strip 1 -C /xamarin && \
+    mkdir /android/xamarin && \
+    tar xjf ./xamarin.android-oss-v*.tar.bz2 --strip 1 -C /android/xamarin && \
     cp -a /xamarin/bin/Release/lib/xamarin.android/. /usr/lib/xamarin.android/ && \
-    rm -rf /usr/lib/mono/xbuild/Xamarin/Android && \
-    rm -rf /usr/lib/mono/xbuild-frameworks/MonoAndroid && \
-    ln -s /usr/lib/xamarin.android/xbuild/Xamarin/Android/ /usr/lib/mono/xbuild/Xamarin/Android && \
-    ln -s /usr/lib/xamarin.android/xbuild-frameworks/MonoAndroid/ /usr/lib/mono/xbuild-frameworks/MonoAndroid && \
-    ln -s /usr/lib/x86_64-linux-gnu/libzip.so.5.0 /usr/lib/x86_64-linux-gnu/libzip.so.4 && \
+##    rm -rf /usr/lib/mono/xbuild/Xamarin/Android && \
+##    rm -rf /usr/lib/mono/xbuild-frameworks/MonoAndroid && \
+#    ln -s /usr/lib/xamarin.android/xbuild/Xamarin/Android/ /usr/lib/mono/xbuild/Xamarin/Android && \
+#    ln -s /usr/lib/xamarin.android/xbuild-frameworks/MonoAndroid/ /usr/lib/mono/xbuild-frameworks/MonoAndroid && \
+#    ln -s /usr/lib/x86_64-linux-gnu/libzip.so.5.0 /usr/lib/x86_64-linux-gnu/libzip.so.4 && \
+    
+     ln -s /android/xamarin/bin/Release/lib/xamarin.android/xbuild/Xamarin /usr/lib/mono/xbuild/Xamarin && \
+     ln -s /android/xamarin/bin/Release/lib/xamarin.android/xbuild-frameworks/MonoAndroid/ /usr/lib/mono/xbuild-frameworks/MonoAndroid && \
+     ln -s /usr/lib64/libzip.so.5 /usr/lib64/libzip.so.4 && \
     rm -rf /tmp/xamarin-linux
 
 # RUN lynx -listonly -dump https://jenkins.mono-project.com/view/Xamarin.Android/job/xamarin-android-linux/lastSuccessfulBuild/Azure/ | grep -o "https://.*/Azure/processDownloadRequest/xamarin-android/xamarin.android-oss_v.*-Release.tar.bz2" > link.txt && \
