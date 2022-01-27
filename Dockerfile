@@ -26,7 +26,7 @@ RUN cd /android/sdk && \
     ./tools/bin/sdkmanager 'build-tools;30.0.2' 'build-tools;29.0.2' platform-tools 'platforms;android-30' 'platforms;android-29' 'ndk-bundle'
 
 
-RUN curl -k "https://dev.azure.com/xamarin/public/_apis/build/builds/{$XAMARIN_OSS_BUILD_ID}/artifacts?artifactName=Installers%20-%20Linux&api-version=5.1" | curl -L $(jq -r '.resource.downloadUrl') -o xamarin-linux.zip && \
+RUN curl -k "https://dev.azure.com/xamarin/public/_apis/build/builds/$XAMARIN_OSS_BUILD_ID/artifacts?artifactName=Installers%20-%20Linux&api-version=5.1" | curl -L $(jq -r '.resource.downloadUrl') -o xamarin-linux.zip && \
     unzip -q xamarin-linux.zip -d /tmp/xamarin-linux && \
     rm xamarin-linux.zip && \
     cd "/tmp/xamarin-linux/Installers - Linux/" && \
