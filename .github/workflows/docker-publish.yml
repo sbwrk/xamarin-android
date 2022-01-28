@@ -68,12 +68,11 @@ jobs:
           context: .
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          outputs: type=docker,dest=- . > xamarin_android.tar
+          outputs: type=docker,dest=xamarin_android.tar
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
           name: xamarin_android
           path: |
-            **/*.tar
             xamarin_android.tar
