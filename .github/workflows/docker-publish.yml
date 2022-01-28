@@ -78,14 +78,15 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          
+          outputs: type=docker,dest=- . > xamarin_android.tar
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: docker-image
+          name: xamarin_android
           path: |
-            **/*
+            **/*.tar
+            xamarin_android.tar
 
       # Sign the resulting Docker image digest except on PRs.
       # This will only write to the public Rekor transparency log when the Docker
